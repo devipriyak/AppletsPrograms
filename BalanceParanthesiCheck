@@ -1,0 +1,44 @@
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Stack;
+ 
+public class BalParanthesisCheck {
+ 
+    static HashMap<Character, Character> bMap;
+ 
+    static {
+        bMap = new HashMap<>();
+        bMap.put('(', ')');
+        bMap.put('[', ']');
+        bMap.put('{', '}');
+    }
+ 
+    static String isBalanced(String str) {
+ 
+        if ((str.length() % 2) != 0) {
+            return "Invalid";
+        }
+        Stack<Character> stack = new Stack<>();
+        for(int i=0; i < str.length(); i++) {
+            Character ch = str.charAt(i);
+            if(bMap.containsKey(ch)) {
+                stack.push(ch);
+            } else if(stack.isEmpty() || ch != bMap.get(stack.pop())) {
+                return "Invalid";
+            }
+        }
+ 
+        return stack.isEmpty()? "Valid": "Invalid";
+    }
+ 
+
+ 
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+            String s = scanner.nextLine();
+            String result = isBalanced(s);
+            System.out.println(result);
+               scanner.close();
+    }
+}
