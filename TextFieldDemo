@@ -1,0 +1,38 @@
+
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ *
+ * @author Admin
+ */
+public class TextFieldDemo extends Applet implements ActionListener{
+    Button b1,b2;
+    TextField t1;
+    public void init()
+    {
+        b1=new Button("Click It");
+        b2=new Button("Reset");
+        
+        t1=new TextField(20);
+        add(b1);
+        add(t1);
+        add(b2);
+        //Registering with the action Listener
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String s1=e.getActionCommand();
+         if(s1.equals("Click It"))
+        t1.setText("Welcome"); //To change body of generated methods, choose Tools | Templates.
+         else
+             t1.setText("");
+    }
+    
+}
